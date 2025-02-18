@@ -10,6 +10,10 @@ function App() {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`,
       }}
+      templateColumns={{
+        base: "1fr", // Single column layout on small screens takes full width
+        lg: "250px 1fr", 
+      }}
     >
       <GridItem area="nav">
         <Navbar />
@@ -18,7 +22,8 @@ function App() {
       <GridItem
         area="aside"
         display={{ base: "none", lg: "block" }}
-        w={{ lg: "300px" }}
+        w={{ lg: "250px" }}
+        px={5}
       >
         <GenreList />
       </GridItem>

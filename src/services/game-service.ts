@@ -1,5 +1,3 @@
-import create from "./http-service";
-
 interface Platform {
   id: number;
   name: string;
@@ -15,4 +13,3 @@ interface Game {
 }
 
 export type { Game, Platform };
-export default create("/games");

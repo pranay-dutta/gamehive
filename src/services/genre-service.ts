@@ -1,5 +1,3 @@
-import create from "./http-service";
-
 interface Genre {
   id: number;
   name: string;
@@ -9,4 +7,3 @@ interface Genre {
 }
 
 export type { Genre };
-export default create("/genres");
