@@ -4,6 +4,7 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/Genres";
 
 function App() {
+  const displayGrid = { base: "none", lg: "block" };
   return (
     <Grid
       templateAreas={{
@@ -12,19 +13,14 @@ function App() {
       }}
       templateColumns={{
         base: "1fr", // Single column layout on small screens takes full width
-        lg: "250px 1fr", 
+        lg: "250px 1fr",
       }}
     >
       <GridItem area="nav">
         <Navbar />
       </GridItem>
 
-      <GridItem
-        area="aside"
-        display={{ base: "none", lg: "block" }}
-        w={{ lg: "250px" }}
-        px={5}
-      >
+      <GridItem area="aside" display={displayGrid} w={{ lg: "250px" }} py="10px" px={5}>
         <GenreList />
       </GridItem>
 
