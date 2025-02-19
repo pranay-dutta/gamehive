@@ -3,7 +3,7 @@ import dataService, { FetchResponse } from "@/services/data-service";
 import { AxiosError, CanceledError } from "@/services/api-client";
 
 const useData = <T>(endpoint: string) => {
-  const [data, setGames] = useState<T[]>([]);
+  const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -12,7 +12,7 @@ const useData = <T>(endpoint: string) => {
     const { request, cancel } = dataService(endpoint).get<FetchResponse<T>>();
     request
       .then((res) => {
-        setGames(res.data.results);
+        setData(res.data.results);
         setLoading(false);
       })
       .catch((err) => {

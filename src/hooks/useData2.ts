@@ -1,23 +1,24 @@
-import { Genre } from "@/services/genre-service";
-// import useData2 from "./useData2";
-import { Game } from "@/services/game-service";
-import { useEffect, useState } from "react";
-import { AxiosError, CanceledError } from "axios";
 import apiClient from "@/services/api-client";
 import { FetchResponse } from "@/services/data-service";
+import { AxiosError, AxiosRequestConfig, CanceledError } from "axios";
+import { useEffect, useState } from "react";
 
-const useGames = (selectedGenre: Genre | null) => {
-  const [data, setData] = useState<Game[]>([]);
+const useData2 = <T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig,
+  deps?: unknown[]
+) => {
+  const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState<AxiosError>();
-  const [loading, setLoading] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const controller = new AbortController();
     setLoading(true);
     apiClient
-      .get<FetchResponse<Game>>("/games", {
+      .get<FetchResponse<T>>(endpoint, {
         signal: controller.signal,
-        params: { genres: selectedGenre?.id },
+        ...requestConfig,
       })
       .then((res) => {
         setData(res.data.results);
@@ -30,9 +31,8 @@ const useGames = (selectedGenre: Genre | null) => {
       });
 
     return () => controller.abort();
-  }, [selectedGenre]);
-
+  }, [...(deps || [])]);
   return { data, error, loading };
 };
 
-export default useGames;
+export default useData2;
