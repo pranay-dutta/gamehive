@@ -1,15 +1,11 @@
-import { Genre } from "@/services/genre-service";
-// import useData2 from "./useData2";
-import { Game, Platform } from "@/services/game-service";
+import { Game } from "@/services/game-service";
 import { useEffect, useState } from "react";
 import { AxiosError, CanceledError } from "axios";
 import apiClient from "@/services/api-client";
 import { FetchResponse } from "@/services/data-service";
+import { GameQuery } from "@/App";
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) => {
+const useGames = (selectedQuery: GameQuery | null) => {
   const [data, setData] = useState<Game[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState<boolean>();
@@ -20,7 +16,10 @@ const useGames = (
     apiClient
       .get<FetchResponse<Game>>("/games", {
         signal: controller.signal,
-        params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id },
+        params: {
+          genres: selectedQuery?.genre?.id,
+          platforms: selectedQuery?.platform?.id,
+        },
       })
       .then((res) => {
         setData(res.data.results);
@@ -33,7 +32,7 @@ const useGames = (
       });
 
     return () => controller.abort();
-  }, [selectedGenre, selectedPlatform]);
+  }, [selectedQuery]);
 
   return { data, error, loading };
 };
