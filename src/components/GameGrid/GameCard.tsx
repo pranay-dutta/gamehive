@@ -5,16 +5,15 @@ import getCroppedImage from "@/services/image-url";
 import CardContainer from "./CardContainer";
 
 const GameCard = ({ game }: { game: Game }) => {
+
   return (
     <CardContainer>
-      <Card.Root
-        transition="scale 0.3s ease-in-out"
-        _hover={{ scale: 1.04 }}
-      >
+      <Card.Root overflow="hidden" transition="scale 0.3s ease-in-out" _hover={{ scale: 1.02 }}>
         <Image src={getCroppedImage(game.background_image)} />
         <Card.Body>
           <HStack justifyContent="space-between">
             {/*Render platform icons for the game*/}
+
             <PlatfromIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
             />
