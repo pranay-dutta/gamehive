@@ -1,6 +1,10 @@
-import useData from "@/hooks/useData";
-import { Platform } from "@/services/game-service";
+// import useData from "@/hooks/useData";
 
-const usePlatforms = () => useData<Platform>("/platforms/lists/parents");
+import platforms from "@/data/platforms";
+
+// import { Platform } from "@/services/game-service";
+const usePlatforms = () => ({ data: platforms, loading: false, error: null });
+
+// const usePlatforms = () => useData<Platform>("/platforms/lists/parents");
 
 export default usePlatforms;
