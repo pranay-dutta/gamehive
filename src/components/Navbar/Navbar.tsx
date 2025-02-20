@@ -1,16 +1,18 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Image } from "@chakra-ui/react";
 import logo from "@/assets/logo.png";
-import { ColorModeButton, useColorModeValue } from "@/components/ui/color-mode";
+import { ColorModeButton } from "@/components/ui/color-mode";
+import SearchInput from "./SearchInput";
 
-const Navbar = () => {
-  const shadow = useColorModeValue("0px 2px 4px rgba(0, 0, 0, 0.05)", "0px 2px 4px rgba(255, 255, 255, 0.05)");
-
+interface Props {
+  onSearch: (query: string) => void;
+}
+const Navbar = ({ onSearch }: Props) => {
   return (
-    <HStack px={4} py={2} justifyContent={"space-between"} boxShadow={shadow}>
+    <HStack px={4} py={2}>
       <HStack gap={15}>
         <Image src={logo} boxSize=" 50px" borderRadius="50%"></Image>
-        <Text fontWeight="medium">GameHive</Text>
       </HStack>
+      <SearchInput onSearch={(query) => onSearch(query)} />
       <ColorModeButton borderRadius="50%" />
     </HStack>
   );

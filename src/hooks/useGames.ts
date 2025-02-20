@@ -20,6 +20,7 @@ const useGames = (selectedQuery: GameQuery | null) => {
           genres: selectedQuery?.genre?.id,
           platforms: selectedQuery?.platform?.id,
           ordering: selectedQuery?.ordering,
+          search: selectedQuery?.query,
         },
       })
       .then((res) => {
