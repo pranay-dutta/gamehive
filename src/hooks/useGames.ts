@@ -19,6 +19,7 @@ const useGames = (selectedQuery: GameQuery | null) => {
         params: {
           genres: selectedQuery?.genre?.id,
           platforms: selectedQuery?.platform?.id,
+          ordering: selectedQuery?.ordering,
         },
       })
       .then((res) => {

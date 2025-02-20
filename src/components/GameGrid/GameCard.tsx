@@ -5,11 +5,12 @@ import getCroppedImage from "@/services/image-url";
 import CardContainer from "./CardContainer";
 
 const GameCard = ({ game }: { game: Game }) => {
+  const placeHolder = "https://placehold.co/600x400";
 
   return (
     <CardContainer>
       <Card.Root overflow="hidden" transition="scale 0.3s ease-in-out" _hover={{ scale: 1.02 }}>
-        <Image src={getCroppedImage(game.background_image)} />
+        <Image src={getCroppedImage(game.background_image) || placeHolder} />
         <Card.Body>
           <HStack justifyContent="space-between">
             {/*Render platform icons for the game*/}
