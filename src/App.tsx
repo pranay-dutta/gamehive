@@ -7,6 +7,7 @@ import PlatformSelector from "./components/PlatformSelector";
 import { Genre } from "./services/genre-service";
 import { Platform } from "./services/game-service";
 import SortSelector from "./components/SortSelector";
+import GameHeading from "./components/GameGrid/GameHeading";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -45,9 +46,11 @@ function App() {
           onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
         />
       </GridItem>
-      1
+
       <GridItem area="main" padding="10px">
-        <Flex direction="column" gap="15px">
+        <GameHeading gameQuery={gameQuery} />
+
+        <Flex direction="column" gap="25px">
           <HStack gap={5}>
             <PlatformSelector
               onSelectPlatform={(platform) =>

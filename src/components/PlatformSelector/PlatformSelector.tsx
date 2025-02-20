@@ -17,30 +17,28 @@ const PlatformSelector = ({ onSelectPlatform }: Props) => {
   const { data } = usePlatforms();
   const [currentPlatform, setCurrentPlatform] = useState<string>("Platforms");
   return (
-    <div>
-      <MenuRoot>
-        <MenuTrigger asChild>
-          <Button variant="outline" size="sm" outline="none">
-            {currentPlatform}
-            <BsChevronDown />
-          </Button>
-        </MenuTrigger>
-        <MenuContent>
-          {data.map((platform) => (
-            <MenuItem
-              onClick={() => {
-                onSelectPlatform(platform);
-                setCurrentPlatform(platform.name);
-              }}
-              value={platform.name}
-              key={platform.id}
-            >
-              {platform.name}
-            </MenuItem>
-          ))}
-        </MenuContent>
-      </MenuRoot>
-    </div>
+    <MenuRoot variant="solid">
+      <MenuTrigger asChild zIndex="popover">
+        <Button variant="outline" size="sm" outline="none">
+          {currentPlatform}
+          <BsChevronDown />
+        </Button>
+      </MenuTrigger>
+      <MenuContent>
+        {data.map((platform) => (
+          <MenuItem
+            onClick={() => {
+              onSelectPlatform(platform);
+              setCurrentPlatform(platform.name);
+            }}
+            value={platform.name}
+            key={platform.id}
+          >
+            {platform.name}
+          </MenuItem>
+        ))}
+      </MenuContent>
+    </MenuRoot>
   );
 };
 export default PlatformSelector;
