@@ -15,7 +15,7 @@ import { IconType } from "react-icons";
 import { GiPlatform, GiGameConsole } from "react-icons/gi";
 import { CgDanger } from "react-icons/cg";
 
-const PlatfromIconList = ({ platforms }: { platforms: Platform[] }) => {
+const PlatfromIconList = ({ platforms }: { platforms: Platform[] | undefined }) => {
   const iconMap: { [key: string]: IconType } = {
     android: FaAndroid,
     atari: SiAtari,
@@ -34,7 +34,7 @@ const PlatfromIconList = ({ platforms }: { platforms: Platform[] }) => {
   };
   return (
     <HStack display={"flex"}>
-      {platforms.map(
+      {platforms && platforms.map(
         (platform, idx) =>
           idx <= 4 && ( // Only show first 5 platforms
             <Icon

@@ -15,9 +15,7 @@ const GameCard = ({ game }: { game: Game }) => {
           <HStack justifyContent="space-between">
             {/*Render platform icons for the game*/}
 
-            <PlatfromIconList
-              platforms={game.parent_platforms.map((p) => p.platform)}
-            />
+            <PlatfromIconList platforms={game.parent_platforms?.map((p) => p.platform)}/>
 
             {/*Render metacritic score*/}
             <CriticScore score={game.metacritic} />
