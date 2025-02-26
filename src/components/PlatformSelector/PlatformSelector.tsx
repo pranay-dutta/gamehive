@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/menu";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms from "@/hooks/usePlatforms";
-import { Platform } from "@/services/platform-service";
+import { Platform } from "@/hooks/usePlatforms";
 import { useState } from "react";
 
 interface Props {

@@ -1,6 +1,6 @@
 import APIClient from "./api-client2";
-import { FetchResponse } from "./data-service";
-import { Platform } from "./platform-service";
+import { FetchResponse } from "@/services/api-client2";
+import { Platform } from "@/hooks/usePlatforms";
 interface Game {
   id: number;
   name: string;

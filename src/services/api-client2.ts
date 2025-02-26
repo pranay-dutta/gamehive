@@ -1,5 +1,8 @@
 import axios, { AxiosRequestConfig, CanceledError, AxiosError } from "axios";
-
+export interface FetchResponse<T> {
+  count: number;
+  results: T[];
+}
 const axiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
   params: {
@@ -17,9 +20,7 @@ class APIClient<T> {
     this.endpoint = endpoint;
   }
   get = async (params: AxiosRequestConfig) => {
-    return axiosInstance
-      .get<T>(this.endpoint, params)
-      .then((res) => res.data);
+    return axiosInstance.get<T>(this.endpoint, params).then((res) => res.data);
   };
   getAll = async () => {
     return axiosInstance.get<T[]>(this.endpoint).then((res) => res.data);

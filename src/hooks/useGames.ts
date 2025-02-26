@@ -1,13 +1,16 @@
-import gameService, { Game } from "@/services/game-service";
-import { FetchResponse } from "@/services/data-service";
+import { Game } from "@/services/game-service";
+import { FetchResponse } from "@/services/api-client2";
 import { GameQuery } from "@/App";
 import { useQuery } from "@tanstack/react-query";
+import APIClient from "@/services/api-client2";
 
 const fetchGames = async ( selectedQuery: GameQuery | null): Promise<FetchResponse<Game>> => {
-  return gameService.get({
+  const apiClient = new APIClient<FetchResponse<Game>>("/games");
+
+  return apiClient.get({
     params: {
       genres: selectedQuery?.genre?.id,
-      platforms: selectedQuery?.platform?.id,
+      parent_platforms: selectedQuery?.platform?.id,
       ordering: selectedQuery?.ordering,
       search: selectedQuery?.query,
     },

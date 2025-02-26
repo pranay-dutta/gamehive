@@ -1,5 +1,5 @@
 import APIClient from "./api-client2";
-import { FetchResponse } from "./data-service";
+import { FetchResponse } from "./api-client2";
 interface Genre {
   id: number;
   name: string;
