@@ -1,3 +1,5 @@
+import APIClient from "./api-client2";
+import { FetchResponse } from "./data-service";
 interface Genre {
   id: number;
   name: string;
@@ -6,4 +8,5 @@ interface Genre {
   image_background: string;
 }
 
+export default new APIClient<FetchResponse<Genre>>("/genres");
 export type { Genre };

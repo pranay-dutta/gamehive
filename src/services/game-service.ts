@@ -1,9 +1,6 @@
-interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
-
+import APIClient from "./api-client2";
+import { FetchResponse } from "./data-service";
+import { Platform } from "./platform-service";
 interface Game {
   id: number;
   name: string;
@@ -12,4 +9,5 @@ interface Game {
   metacritic: number;
 }
 
-export type { Game, Platform };
+export default new APIClient<FetchResponse<Game>>("/games");
+export type { Game };

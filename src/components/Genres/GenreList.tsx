@@ -10,7 +10,8 @@ interface Props {
 }
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
-  const { loading, data } = useGenre();
+  const { isLoading, data } = useGenre();
+  const genreList = data?.results || [];
 
   const getTextStyle = {
     color: "fg",
@@ -21,16 +22,28 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
 
   return (
     <>
-      <Heading mb={3} fontSize="2xl" fontWeight="bold" mt={10}>Genres</Heading>
-      {loading && <GenreSkeleton />}
+      <Heading mb={3} fontSize="2xl" fontWeight="bold" mt={10}>
+        Genres
+      </Heading>
+      {isLoading && <GenreSkeleton />}
       <List.Root gap={3} listStyle="none">
-        {data.map((genre) => {
+        {genreList.map((genre) => {
           const isSelected = selectedGenre?.name === genre.name;
 
           return (
             <HStack key={genre.id} gap={2}>
-              <Image src={getCroppedImage(genre.image_background)} boxSize="32px" borderRadius={8} />
-              <Text {...getTextStyle} fontWeight={isSelected ? "bold" : "normal"} onClick={() => onSelectGenre(genre)} > {genre.name}
+              <Image
+                src={getCroppedImage(genre.image_background)}
+                boxSize="32px"
+                borderRadius={8}
+              />
+              <Text
+                {...getTextStyle}
+                fontWeight={isSelected ? "bold" : "normal"}
+                onClick={() => onSelectGenre(genre)}
+              >
+                {" "}
+                {genre.name}
               </Text>
             </HStack>
           );

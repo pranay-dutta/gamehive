@@ -1,42 +1,24 @@
-import { Game } from "@/services/game-service";
-import { useEffect, useState } from "react";
-import { AxiosError, CanceledError } from "axios";
-import apiClient from "@/services/api-client";
+import gameService, { Game } from "@/services/game-service";
 import { FetchResponse } from "@/services/data-service";
 import { GameQuery } from "@/App";
+import { useQuery } from "@tanstack/react-query";
 
-const useGames = (selectedQuery: GameQuery | null) => {
-  const [data, setData] = useState<Game[]>([]);
-  const [error, setError] = useState<AxiosError>();
-  const [loading, setLoading] = useState<boolean>();
-
-  useEffect(() => {
-    const controller = new AbortController();
-    setLoading(true);
-    apiClient
-      .get<FetchResponse<Game>>("/games", {
-        signal: controller.signal,
-        params: {
-          genres: selectedQuery?.genre?.id,
-          platforms: selectedQuery?.platform?.id,
-          ordering: selectedQuery?.ordering,
-          search: selectedQuery?.query,
-        },
-      })
-      .then((res) => {
-        setData(res.data.results);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err);
-        setLoading(false);
-      });
-
-    return () => controller.abort();
-  }, [selectedQuery]);
-
-  return { data, error, loading };
+const fetchGames = async ( selectedQuery: GameQuery | null): Promise<FetchResponse<Game>> => {
+  return gameService.get({
+    params: {
+      genres: selectedQuery?.genre?.id,
+      platforms: selectedQuery?.platform?.id,
+      ordering: selectedQuery?.ordering,
+      search: selectedQuery?.query,
+    },
+  });
 };
+
+const useGames = (selectedQuery: GameQuery | null) =>
+  useQuery<FetchResponse<Game>, Error>({
+    queryKey: ["games", selectedQuery],
+    queryFn: () => fetchGames(selectedQuery),
+    staleTime: 60 * 1000, // 1 minute
+  });
 
 export default useGames;

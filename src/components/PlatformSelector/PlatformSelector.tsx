@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/menu";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms from "@/hooks/usePlatforms";
-import { Platform } from "@/services/game-service";
+import { Platform } from "@/services/platform-service";
 import { useState } from "react";
 
 interface Props {
@@ -25,7 +25,7 @@ const PlatformSelector = ({ onSelectPlatform }: Props) => {
         </Button>
       </MenuTrigger>
       <MenuContent>
-        {data.map((platform) => (
+        {data?.results.map((platform) => (
           <MenuItem
             onClick={() => {
               onSelectPlatform(platform);

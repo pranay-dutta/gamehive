@@ -7,7 +7,7 @@ interface Props {
   gameQuery: GameQuery | null;
 }
 const GameGrid = ({ gameQuery }: Props) => {
-  const { error, data, loading } = useGames(gameQuery);
+  const { error, data, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
   return (
@@ -15,8 +15,8 @@ const GameGrid = ({ gameQuery }: Props) => {
       {error && <p>Error: {error.message}</p>}
 
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} gap={6}>
-        {loading && skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
-        {data && !loading && data.map((game) => <GameCard game={game} key={game.id} />)}
+        {isLoading && skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
+        {!isLoading && data?.results.map((game) => <GameCard game={game} key={game.id} />)}
       </SimpleGrid>
     </>
   );
