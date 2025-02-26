@@ -1,7 +1,7 @@
-import { Card, Heading, HStack, Image } from "@chakra-ui/react";
-import { PlatfromIconList, CriticScore } from "./";
 import { Game } from "@/services/game-service";
 import getCroppedImage from "@/services/image-url";
+import { Card, Heading, HStack, Image } from "@chakra-ui/react";
+import { CriticScore, PlatfromIconList } from "./";
 import CardContainer from "./CardContainer";
 
 const GameCard = ({ game }: { game: Game }) => {

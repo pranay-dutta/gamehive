@@ -1,5 +1,4 @@
-import APIClient from "./api-client2";
-import { FetchResponse } from "./api-client2";
+import APIClient, { FetchResponse } from "./api-client";
 interface Genre {
   id: number;
   name: string;
@@ -10,3 +9,4 @@ interface Genre {
 
 export default new APIClient<FetchResponse<Genre>>("/genres");
 export type { Genre };
+

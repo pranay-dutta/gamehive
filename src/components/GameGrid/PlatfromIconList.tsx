@@ -1,21 +1,18 @@
 import { Platform } from "@/hooks/usePlatforms";
-import { Icon, HStack } from "@chakra-ui/react";
-import {
-  FaWindows,
-  FaPlaystation,
-  FaXbox,
-  FaApple,
-  FaLinux,
-  FaAndroid,
-} from "react-icons/fa";
-import { MdPhoneIphone } from "react-icons/md";
-import { SiNintendo, SiSega, SiAtari } from "react-icons/si";
-import { BsGlobe } from "react-icons/bs";
+import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { GiPlatform, GiGameConsole } from "react-icons/gi";
+import { BsGlobe } from "react-icons/bs";
 import { CgDanger } from "react-icons/cg";
+import { FaAndroid, FaApple, FaLinux, FaPlaystation, FaWindows, FaXbox } from "react-icons/fa";
+import { GiGameConsole, GiPlatform } from "react-icons/gi";
+import { MdPhoneIphone } from "react-icons/md";
+import { SiAtari, SiNintendo, SiSega } from "react-icons/si";
 
-const PlatfromIconList = ({ platforms }: { platforms: Platform[] | undefined }) => {
+const PlatfromIconList = ({
+  platforms,
+}: {
+  platforms: Platform[] | undefined;
+}) => {
   const iconMap: { [key: string]: IconType } = {
     android: FaAndroid,
     atari: SiAtari,
@@ -34,16 +31,17 @@ const PlatfromIconList = ({ platforms }: { platforms: Platform[] | undefined }) 
   };
   return (
     <HStack display={"flex"}>
-      {platforms && platforms.map(
-        (platform, idx) =>
-          idx <= 4 && ( // Only show first 5 platforms
-            <Icon
-              key={platform.id}
-              as={iconMap[platform.slug] || CgDanger}
-              color="gray.500"
-            />
-          )
-      )}
+      {platforms &&
+        platforms.map(
+          (platform, idx) =>
+            idx <= 4 && ( // Only show first 5 platforms
+              <Icon
+                key={platform.id}
+                as={iconMap[platform.slug] || CgDanger} //if no platform icon is available display CgDanger
+                color="gray.500"
+              />
+            )
+        )}
     </HStack>
   );
 };

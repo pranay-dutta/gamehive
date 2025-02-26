@@ -1,26 +1,13 @@
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "@/components/ui/menu";
+import orderings from "@/data/orderings";
 import { Button } from "@chakra-ui/react";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
-
-import { BsChevronDown } from "react-icons/bs";
 import { useState } from "react";
+import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
   onSelectOrder: (ordering: string) => void;
 }
 const SortSelector = ({ onSelectOrder }: Props) => {
-  const orderings = [
-    { id: 1, slug: "", name: "Relevance" },
-    { id: 2, slug: "-added", name: "Date added" },
-    { id: 3, slug: "name", name: "Name" },
-    { id: 4, slug: "-released", name: "Release date" },
-    { id: 5, slug: "-metacritic", name: "Popularity" },
-    { id: 6, slug: "-rating", name: "Average rating" },
-  ];
   const [currentOrder, setCurrentOrder] = useState<string>("Relevance");
   return (
     <MenuRoot variant="solid">

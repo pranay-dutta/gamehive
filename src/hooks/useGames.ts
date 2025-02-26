@@ -1,8 +1,7 @@
-import { Game } from "@/services/game-service";
-import { FetchResponse } from "@/services/api-client2";
 import { GameQuery } from "@/App";
+import APIClient, { FetchResponse } from "@/services/api-client";
+import { Game } from "@/services/game-service";
 import { useQuery } from "@tanstack/react-query";
-import APIClient from "@/services/api-client2";
 
 const fetchGames = async ( selectedQuery: GameQuery | null): Promise<FetchResponse<Game>> => {
   const apiClient = new APIClient<FetchResponse<Game>>("/games");

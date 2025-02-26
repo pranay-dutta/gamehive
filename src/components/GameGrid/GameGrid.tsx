@@ -1,7 +1,7 @@
+import { GameQuery } from "@/App";
 import useGames from "@/hooks/useGames";
 import { SimpleGrid } from "@chakra-ui/react";
 import { GameCard, GameCardSkeleton } from "./";
-import { GameQuery } from "@/App";
 
 interface Props {
   gameQuery: GameQuery | null;

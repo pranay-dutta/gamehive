@@ -1,8 +1,17 @@
-import GameGrid from "./GameGrid";
+import CardContainer from "./CardContainer";
 import CriticScore from "./CriticScore";
 import GameCard from "./GameCard";
-import PlatfromIconList from "./PlatfromIconList";
 import GameCardSkeleton from "./GameCardSkeleton";
+import GameGrid from "./GameGrid";
+import GameHeading from "./GameHeading";
+import PlatfromIconList from "./PlatfromIconList";
 
-export { CriticScore, GameCard, PlatfromIconList, GameCardSkeleton };
+export {
+  CardContainer,
+  CriticScore,
+  GameCard,
+  GameCardSkeleton,
+  GameHeading,
+  PlatfromIconList,
+};
 export default GameGrid;

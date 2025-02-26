@@ -1,8 +1,8 @@
-import { HStack, Input, Kbd } from "@chakra-ui/react";
 import { InputGroup } from "@/components/ui/input-group";
-import { LuSearch } from "react-icons/lu";
-import { useHotkeys } from "react-hotkeys-hook";
+import { HStack, Input, Kbd } from "@chakra-ui/react";
 import { useRef } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
+import { LuSearch } from "react-icons/lu";
 
 interface Props {
   onSearch: (query: string) => void;
@@ -10,12 +10,9 @@ interface Props {
 const SearchInput = ({ onSearch }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useHotkeys(
-    "/",
-    () => {
+  useHotkeys("/", () => {
       inputRef.current?.focus();
-    },
-    { preventDefault: true }
+    }, { preventDefault: true }
   );
   return (
     <HStack gap="10" w="full">
@@ -27,8 +24,7 @@ const SearchInput = ({ onSearch }: Props) => {
         <Input
           ref={inputRef}
           placeholder="Search games . . ."
-          onKeyDown={(e) =>
-            e.key === "Enter" && onSearch(inputRef.current?.value || "")
+          onKeyDown={(e) => e.key === "Enter" && onSearch(inputRef.current?.value || "") // Click Enter: callback onSearch
           }
         />
       </InputGroup>
