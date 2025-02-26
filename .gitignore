@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 # Exclude unused folders
-*unused/ 
 bundle-analysis.html
