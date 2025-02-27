@@ -28,8 +28,8 @@ const GameGrid = ({ gameQuery }: Props) => {
         hasMore={hasNextPage}
         next={fetchNextPage}
         loader={isFetchingNextPage && <Spinner size="md" />}
+        style={{ overflow: "unset" }}
       >
-
         <Box mb={3}>
           {error && <p>Error: {error.message}</p>}
           <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} gap={6}>
@@ -45,7 +45,6 @@ const GameGrid = ({ gameQuery }: Props) => {
             ))}
           </SimpleGrid>
         </Box>
-
       </InfiniteScroll>
     </>
   );
