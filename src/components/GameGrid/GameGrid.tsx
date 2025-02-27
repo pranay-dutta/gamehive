@@ -1,8 +1,9 @@
 import { GameQuery } from "@/App";
 import useGames from "@/hooks/useGames";
-import { Button, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { GameCard, GameCardSkeleton } from "./";
 import { Fragment } from "react/jsx-runtime";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   gameQuery: GameQuery | null;
@@ -17,29 +18,35 @@ const GameGrid = ({ gameQuery }: Props) => {
     hasNextPage,
   } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+  const fetchGameCount =
+    data?.pages.reduce((acc, page) => acc + page.results.length, 0) || 0;
 
   return (
     <>
-      {error && <p>Error: {error.message}</p>}
+      <InfiniteScroll
+        dataLength={fetchGameCount}
+        hasMore={hasNextPage}
+        next={fetchNextPage}
+        loader={isFetchingNextPage && <Spinner size="md" />}
+      >
 
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} gap={6}>
-        {isLoading &&
-          skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
+        <Box mb={3}>
+          {error && <p>Error: {error.message}</p>}
+          <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} gap={6}>
+            {isLoading &&
+              skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
 
-        {data?.pages.map((page, index) => (
-          <Fragment key={index}>
-            {page?.results.map((game) => (
-              <GameCard game={game} key={game.id} />
+            {data?.pages.map((page, index) => (
+              <Fragment key={index}>
+                {page?.results.map((game) => (
+                  <GameCard game={game} key={game.id} />
+                ))}
+              </Fragment>
             ))}
-          </Fragment>
-        ))}
-      </SimpleGrid>
-      
-      {hasNextPage && (
-        <Button onClick={() => fetchNextPage()} variant="outline">
-          {isFetchingNextPage ? "Loading ..." : "Load more games"}
-        </Button>
-      )}
+          </SimpleGrid>
+        </Box>
+
+      </InfiniteScroll>
     </>
   );
 };
