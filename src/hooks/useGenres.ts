@@ -3,14 +3,14 @@ import { FetchResponse } from "@/services/api-client";
 import genreService, { Genre } from "@/services/genre-service";
 import { useQuery } from "@tanstack/react-query";
 
-const useGenre = () => {
+const useGenres = () => {
   return useQuery<FetchResponse<Genre>, Error>({
     queryKey: ["genres"],
     queryFn: genreService.get,
     retry: 3,
     staleTime: 24 * 60 * 60 * 1000, // 24h
-    initialData: { count: genres.length, next: null, results: genres },
+    initialData: genres
   });
 };
 
-export default useGenre;
+export default useGenres;

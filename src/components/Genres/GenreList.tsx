@@ -1,4 +1,4 @@
-import useGenre from "@/hooks/useGenres";
+import useGenres from "@/hooks/useGenres";
 import getCroppedImage from "@/services/image-url";
 import { Heading, HStack, Image, List, Text } from "@chakra-ui/react";
 import GenreSkeleton from "./GenreSkeleton";
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const GenreList = ({ onSelectGenre, selectedGenreId }: Props) => {
-  const { isLoading, data } = useGenre();
+  const { isLoading, data } = useGenres();
   const genreList = data?.results || [];
 
   const getTextStyle = {
