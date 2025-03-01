@@ -1,18 +1,19 @@
 import { InputGroup } from "@/components/ui/input-group";
+import useGameQueryStore from "@/store";
 import { HStack, Input, Kbd } from "@chakra-ui/react";
 import { useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { LuSearch } from "react-icons/lu";
 
-interface Props {
-  onSearch: (query: string) => void;
-}
-const SearchInput = ({ onSearch }: Props) => {
+const SearchInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const setSearchText = useGameQueryStore((selector) => selector.setSearchText);
 
-  useHotkeys("/", () => {
+  useHotkeys( "/",
+    () => {
       inputRef.current?.focus();
-    }, { preventDefault: true }
+    },
+    { preventDefault: true }
   );
   return (
     <HStack gap="10" w="full">
@@ -24,7 +25,10 @@ const SearchInput = ({ onSearch }: Props) => {
         <Input
           ref={inputRef}
           placeholder="Search games . . ."
-          onKeyDown={(e) => e.key === "Enter" && onSearch(inputRef.current?.value || "") // Click Enter: callback onSearch
+          onKeyDown={(e) =>
+            e.key === "Enter" &&
+            inputRef.current?.value &&
+            setSearchText(inputRef.current.value)
           }
         />
       </InputGroup>
