@@ -9,4 +9,3 @@ interface Genre {
 
 export default new APIClient<FetchResponse<Genre>>("/genres");
 export type { Genre };
-

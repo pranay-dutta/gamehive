@@ -20,9 +20,14 @@ class APIClient<T> {
   constructor(endpoint: string) {
     this.endpoint = endpoint;
   }
-  get = async (params: AxiosRequestConfig) => {
-    return axiosInstance.get<T>(this.endpoint, params).then((res) => res.data);
+  get = async (params?: AxiosRequestConfig) => {
+    return axiosInstance .get<T>(this.endpoint, params) .then((res) => res.data);
   };
+  
+  getSpecific = async (slug?: string) => {
+    return axiosInstance .get<T>(`${this.endpoint}/${slug}`) .then((res) => res.data);
+  };
+
   getAll = async () => {
     return axiosInstance.get<T[]>(this.endpoint).then((res) => res.data);
   };

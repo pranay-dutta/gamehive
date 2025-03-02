@@ -1,13 +1,16 @@
-import { Navbar } from "@/components"
-import { Outlet } from "react-router-dom"
+import { Navbar } from "@/components";
+import { Box } from "@chakra-ui/react";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
     <div>
       <Navbar />
-      <Outlet />
+      <Box p={"20px"}>
+        <Outlet />
+      </Box>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

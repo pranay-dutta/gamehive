@@ -19,7 +19,7 @@ const GenreList = () => {
 
   return (
     <>
-      <Heading mb={3} fontSize="2xl" fontWeight="bold" mt={10}>
+      <Heading mb={3} fontSize="2xl" fontWeight="bold" mt={6}>
         Genres
       </Heading>
       {isLoading && <GenreSkeleton />}

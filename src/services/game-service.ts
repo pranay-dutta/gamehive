@@ -2,6 +2,7 @@ import { Platform } from "@/hooks/usePlatforms";
 import APIClient, { FetchResponse } from "@/services/api-client";
 interface Game {
   id: number;
+  slug: string;
   name: string;
   background_image: string; //url
   parent_platforms?: { platform: Platform }[];

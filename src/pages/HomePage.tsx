@@ -24,13 +24,13 @@ function HomePage() {
         area="aside"
         display={displayGrid}
         w={{ lg: "250px" }}
-        py="10px"
-        px={5}
+        // py="10px"
+        pr={5}
       >
         <GenreList />
       </GridItem>
 
-      <GridItem area="main" padding="10px">
+      <GridItem area="main">
         <GameHeading />
 
         <Flex direction="column" gap="25px">
