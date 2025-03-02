@@ -26,3 +26,4 @@ dist-ssr
 # Exclude unused folders
 *unused/ 
 bundle-analysis.html
+.vercel
