@@ -1,13 +1,18 @@
 import logo from "@/assets/logo.png";
 import { ColorModeButton } from "@/components/ui/color-mode";
-import { HStack, Image } from "@chakra-ui/react";
+import { Box, HStack, Image } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <HStack px={4} py={2}>
       <HStack gap={15}>
-        <Image src={logo} boxSize=" 50px" borderRadius="50%"></Image>
+        <Link to="/">
+          <Box boxSize="50px" borderRadius="50%">
+            <Image src={logo}></Image>
+          </Box>
+        </Link>
       </HStack>
       <SearchInput />
       <ColorModeButton borderRadius="50%" />
