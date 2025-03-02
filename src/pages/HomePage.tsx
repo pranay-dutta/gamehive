@@ -2,28 +2,24 @@ import { Flex, Grid, GridItem, HStack } from "@chakra-ui/react";
 import {
   GameGrid,
   GenreList,
-  Navbar,
   PlatformSelector,
   SortSelector,
-} from "./components";
-import { GameHeading } from "./components/GameGrid";
+} from "@/components";
+import { GameHeading } from "@/components/GameGrid";
 
-function App() {
+function HomePage() {
   const displayGrid = { base: "none", lg: "block" };
   return (
     <Grid
       templateAreas={{
-        base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"`,
+        base: `"main"`,
+        lg: `"aside main"`,
       }}
       templateColumns={{
         base: "1fr", // Single column layout on small screens takes full width
         lg: "250px 1fr",
       }}
     >
-      <GridItem area="nav">
-        <Navbar />
-      </GridItem>
       <GridItem
         area="aside"
         display={displayGrid}
@@ -49,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;
