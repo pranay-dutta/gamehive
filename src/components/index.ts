@@ -1,3 +1,4 @@
+import DefinitionItem from "./DefinitionItem";
 import ExpandableText from "./ExpandableText";
 import GameGrid from "./GameGrid";
 import GenreList from "./Genres";
@@ -6,7 +7,7 @@ import PlatformSelector from "./PlatformSelector";
 import SortSelector from "./SortSelector";
 
 export {
-  ExpandableText,
+  DefinitionItem, ExpandableText,
   GameGrid,
   GenreList,
   Navbar,
