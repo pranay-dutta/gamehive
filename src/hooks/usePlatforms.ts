@@ -8,14 +8,14 @@ export interface Platform {
   name: string;
   slug: string;
 }
-const apiClient = new APIClient<FetchResponse<Platform>>(
+const apiClient = new APIClient<Platform>(
   "/platforms/lists/parents"
 );
 
 const usePlatforms = () =>
   useQuery<FetchResponse<Platform>, Error>({
     queryKey: ["platforms"],
-    queryFn: apiClient.get,
+    queryFn: apiClient.getAll,
     refetchInterval: 60 * 60 * 1000, // refetch every hour
     staleTime: ms("1d"),
     initialData: platforms,

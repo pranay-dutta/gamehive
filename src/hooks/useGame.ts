@@ -7,8 +7,8 @@ const apiClient = new APIClient<Game>("/games");
 
 const useGame = (slug?: string) => {
   return useQuery<Game, Error>({
-    queryKey: ["games", slug],
-    queryFn: () => apiClient.getSpecific(slug),
+    queryKey: ["game", slug],
+    queryFn: () => apiClient.get(slug),
     retry: 3,
     staleTime: ms("1d"),
   });

@@ -9,9 +9,9 @@ const fetchGames = async (
   gameQuery: GameQuery,
   pageParam: number
 ): Promise<FetchResponse<Game>> => {
-  const apiClient = new APIClient<FetchResponse<Game>>("/games");
+  const apiClient = new APIClient<Game>("/games");
 
-  return apiClient.get({
+  return apiClient.getAll({
     params: {
       genres: gameQuery.genreId,
       parent_platforms: gameQuery.platformId,
@@ -24,9 +24,10 @@ const fetchGames = async (
 
 const useGames = () => {
   const gameQuery = useGameQueryStore((s) => s.gameQuery);
-  return useInfiniteQuery({
+  
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
-    queryFn: ({ pageParam = 1 }) => fetchGames(gameQuery, pageParam),
+    queryFn: ({ pageParam = 1 }) => fetchGames(gameQuery, pageParam as number),
     initialPageParam: 1, // Starting page
     staleTime: ms("1d"),
     getNextPageParam: (lastPage, allPages) => {

@@ -1,3 +1,4 @@
+import { FetchResponse } from "@/entitites/FetchResponse";
 import axios, { AxiosRequestConfig, CanceledError, AxiosError } from "axios";
 const axiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
@@ -15,18 +16,13 @@ class APIClient<T> {
   constructor(endpoint: string) {
     this.endpoint = endpoint;
   }
-  get = async (params?: AxiosRequestConfig) => {
-    return axiosInstance.get<T>(this.endpoint, params).then((res) => res.data);
+
+  get = async (slug?: string) => {
+    return axiosInstance .get<T>(`${this.endpoint}/${slug}`).then((res) => res.data);
   };
 
-  getSpecific = async (slug?: string) => {
-    return axiosInstance
-      .get<T>(`${this.endpoint}/${slug}`)
-      .then((res) => res.data);
-  };
-
-  getAll = async () => {
-    return axiosInstance.get<T[]>(this.endpoint).then((res) => res.data);
+  getAll = async (params?: AxiosRequestConfig) => {
+    return axiosInstance.get<FetchResponse<T>>(this.endpoint, params).then((res) => res.data);
   };
   post = async (data: T) => {
     return axiosInstance.post<T>(this.endpoint, data).then((res) => res.data);

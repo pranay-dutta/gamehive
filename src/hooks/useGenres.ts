@@ -6,10 +6,10 @@ import APIClient from "@/services/api-client";
 import ms from "ms";
 
 const useGenres = () => {
-  const apiClient = new APIClient<FetchResponse<Genre>>("/genres");
+  const apiClient = new APIClient<Genre>("/genres");
   return useQuery<FetchResponse<Genre>, Error>({
     queryKey: ["genres"],
-    queryFn: apiClient.get,
+    queryFn: apiClient.getAll,
     retry: 3,
     staleTime: ms("1d"),
     initialData: genres,
