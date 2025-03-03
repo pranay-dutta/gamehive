@@ -1,5 +1,6 @@
-import APIClient, { FetchResponse } from "@/services/api-client";
-import { Game } from "@/services/game-service";
+import APIClient from "@/services/api-client";
+import { FetchResponse } from "@/entitites/FetchResponse";
+import { Game } from "@/entitites/Game";
 import useGameQueryStore, { GameQuery } from "@/store";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";

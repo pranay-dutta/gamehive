@@ -1,5 +1,6 @@
 import platforms from "@/data/platforms";
-import APIClient, { FetchResponse } from "@/services/api-client";
+import APIClient from "@/services/api-client";
+import { FetchResponse } from "@/entitites/FetchResponse";
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 export interface Platform {

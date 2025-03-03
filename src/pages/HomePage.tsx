@@ -24,7 +24,6 @@ function HomePage() {
         area="aside"
         display={displayGrid}
         w={{ lg: "250px" }}
-        // py="10px"
         pr={5}
       >
         <GenreList />

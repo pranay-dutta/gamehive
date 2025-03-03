@@ -1,9 +1,4 @@
 import axios, { AxiosRequestConfig, CanceledError, AxiosError } from "axios";
-export interface FetchResponse<T> {
-  count: number;
-  next: string | null;
-  results: T[];
-}
 const axiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
   params: {
@@ -21,11 +16,13 @@ class APIClient<T> {
     this.endpoint = endpoint;
   }
   get = async (params?: AxiosRequestConfig) => {
-    return axiosInstance .get<T>(this.endpoint, params) .then((res) => res.data);
+    return axiosInstance.get<T>(this.endpoint, params).then((res) => res.data);
   };
-  
+
   getSpecific = async (slug?: string) => {
-    return axiosInstance .get<T>(`${this.endpoint}/${slug}`) .then((res) => res.data);
+    return axiosInstance
+      .get<T>(`${this.endpoint}/${slug}`)
+      .then((res) => res.data);
   };
 
   getAll = async () => {
