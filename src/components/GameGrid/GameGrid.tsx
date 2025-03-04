@@ -5,6 +5,7 @@ import { Fragment } from "react/jsx-runtime";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const GameGrid = () => {
+  /*Fetching Games */
   const {
     error,
     data,

@@ -20,12 +20,7 @@ function HomePage() {
         lg: "250px 1fr",
       }}
     >
-      <GridItem
-        area="aside"
-        display={displayGrid}
-        w={{ lg: "250px" }}
-        pr={5}
-      >
+      <GridItem area="aside" display={displayGrid} w={{ lg: "250px" }} pr={5}>
         <GenreList />
       </GridItem>
 
