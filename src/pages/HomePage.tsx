@@ -5,7 +5,7 @@ import {
   PlatformSelector,
   SortSelector,
 } from "@/components";
-import { GameHeading } from "@/components/GameGrid";
+import { GameHeading } from "@/components";
 
 function HomePage() {
   const displayGrid = { base: "none", lg: "block" };
