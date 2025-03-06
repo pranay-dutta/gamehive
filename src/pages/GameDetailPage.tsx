@@ -1,5 +1,6 @@
 import { ExpandableText } from "@/components";
-import GameAttributes from "@/components/GameAttributes/GameAttributes";
+import GameAttributes from "@/components/GameAttributes";
+import GameTrailer from "@/components/GameTrailer";
 import useGame from "@/hooks/useGame";
 import { Box, Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
@@ -16,7 +17,8 @@ const GameDetailPage = () => {
         {isLoading ? "Loading ..." : game?.name}
       </Heading>
       <ExpandableText children={game?.description_raw} />
-      <GameAttributes game={game}/>
+      <GameAttributes game={game} />
+      <GameTrailer gameId={game.id} />
     </Box>
   );
 };

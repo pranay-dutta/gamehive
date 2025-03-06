@@ -19,9 +19,9 @@ class APIClient<T> {
     this.endpoint = endpoint;
   }
 
-  get = async (slug?: string) => {
+  get = async (slug?: string | number) => {
     return axiosInstance
-      .get<T>(`${this.endpoint}/${slug}`)
+      .get<T>(this.endpoint + "/" + slug)
       .then((res) => res.data);
   };
 
