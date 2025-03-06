@@ -1,4 +1,4 @@
-import { InputGroup } from "@/components/ui/input-group";
+import { InputGroup } from "@/ui/input-group";
 import useGameQueryStore from "@/store";
 import { HStack, Input, Kbd } from "@chakra-ui/react";
 import { useRef } from "react";

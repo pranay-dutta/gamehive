@@ -1,4 +1,4 @@
-import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "@/components/ui/menu";
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "@/ui/menu";
 import usePlatform from "@/hooks/usePlatform";
 import usePlatforms from "@/hooks/usePlatforms";
 import useGameQueryStore from "@/store";

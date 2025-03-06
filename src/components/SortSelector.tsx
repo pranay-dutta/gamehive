@@ -1,9 +1,4 @@
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "@/ui/menu";
 import orderings from "@/data/orderings";
 import useGameQueryStore from "@/store";
 import { Button } from "@chakra-ui/react";
