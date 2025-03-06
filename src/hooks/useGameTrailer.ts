@@ -1,4 +1,4 @@
-import { FetchResponse } from "@/entitites/FetchResponse";
+import FetchResponse from "@/entitites/FetchResponse";
 import Trailer from "@/entitites/Trailer";
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";

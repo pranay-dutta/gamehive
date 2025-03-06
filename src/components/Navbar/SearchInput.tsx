@@ -4,12 +4,23 @@ import { HStack, Input, Kbd } from "@chakra-ui/react";
 import { useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { LuSearch } from "react-icons/lu";
+import { KeyboardEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const setSearchText = useGameQueryStore((selector) => selector.setSearchText);
+  const navigate = useNavigate();
 
-  useHotkeys( "/",
+  const handleKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == "Enter" && inputRef.current?.value) {
+      setSearchText(inputRef.current.value);
+      navigate("/");
+    }
+  };
+
+  useHotkeys(
+    "/",
     () => {
       inputRef.current?.focus();
     },
@@ -25,11 +36,7 @@ const SearchInput = () => {
         <Input
           ref={inputRef}
           placeholder="Search games . . ."
-          onKeyDown={(e) =>
-            e.key === "Enter" &&
-            inputRef.current?.value &&
-            setSearchText(inputRef.current.value)
-          }
+          onKeyDown={handleKeydown}
         />
       </InputGroup>
     </HStack>

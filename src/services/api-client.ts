@@ -1,4 +1,4 @@
-import { FetchResponse } from "@/entitites/FetchResponse";
+import FetchResponse from "@/entitites/FetchResponse";
 import axios, { AxiosRequestConfig, CanceledError, AxiosError } from "axios";
 const { VITE_RAWG_API } = import.meta.env;
 
